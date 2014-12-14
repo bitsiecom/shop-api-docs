@@ -1,46 +1,15 @@
 FORMAT: 1A
 
-# bitsieshop
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+# Bitsie Shop
+Using the Bitsie Shop API, you can access all features available under your account via a RESTful API.
 
-# Group Notes
-Notes related resources of the **Notes API**
+# Group Users
 
-## Notes Collection [/notes]
-### List all Notes [GET]
+## Users Collection [/users]
+### List all Users [GET]
+Retrieve all users under your account.
+
+This method is only available to `merchant` roles.
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
-
-### Create a Note [POST]
-+ Request (application/json)
-
-        { "title": "Buy cheese and bread for breakfast." }
-
-+ Response 201 (application/json)
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Note [/notes/{id}]
-A single Note object with all its details
-
-+ Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
-
-### Retrieve a Note [GET]
-+ Response 200 (application/json)
-
-    + Header
-
-            X-My-Header: The Value
-
-    + Body
-
-            { "id": 2, "title": "Pick-up posters from post-office" }
-
-### Remove a Note [DELETE]
-+ Response 204
+        {"meta":{"offset":0,"limit":20,"totalCount":3,"query":{}},"users":[{"id":1,"firstName":"John","lastName":"Doe","email":"admin@bitsie.com","hashedPassword":"0cd93e00df4acbca670688ba205c8ecd0ed9138985e5f23789fd6c6c8fe84ea4","salt":"Salt","role":"administrator","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[{"id":1,"name":"bitpayApiKey","value":"1ApiKey","createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","userId":1}]},{"id":2,"firstName":"Jane","lastName":"Smith","email":"jane@bitsie.com","hashedPassword":"HashedPassword","salt":"Salt","role":"merchant","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[{"id":4,"name":"gratuity","value":"true","createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","userId":2}]},{"id":3,"firstName":"Jane","lastName":"Smith","email":"jane@bitsie.com","hashedPassword":"HashedPassword","salt":"Salt","role":"merchant","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[]}]}
