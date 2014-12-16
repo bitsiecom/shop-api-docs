@@ -54,10 +54,12 @@ This method is only available to `merchant` roles.
     * status (optional, string) ... Status of user record
         * active
         * suspended
-    * sort (optional, string) ... Column used to sort records
-    * order (optional, string) ... Sort order of records
-        * ASC
-        * DESC
+    * sort (optional, string) ... Column/direction used to sort records. If you want to specify the sort order, add "+ASC" or "+DESC" after the column name. Separate multiple columsn using a comma.
+        * Examples: 
+            * &sort=lastName
+            * &sort=lastName+DESC,firstName+ASC
+            * &sort=lastName+DESC,firstName
+            * &sort=lastName+DESC,firstName+ASC
 
 + Response 200 (application/json)
 
