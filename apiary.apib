@@ -15,13 +15,17 @@ All requests to Bitsie Shop must be made via https://
 
 ## Errors
 
-If an expected error occurs, the Bitsie Shop API will respond with the appropriate non-200 status code. Error information will be included in the response.
+If an expected error occurs, or the request requires additional user action, the Bitsie Shop API will respond with the appropriate non-200 status code. Error information will be included in the response.
 
     {
         "error" : { 
             "message" : "Invoice amount is required." 
         } 
     }
+
+## Request Validation
+
+Requests containing invalid data will respond with a 410 status code, and will contain an error message indicating the invalid data. Only a single invalid property will be identified in the response, so it is recommended that you validate requests prior to sending them to the Bitsie Shop API. See [Errors](#errors) for response format.
 
 # Group Accounts
 
