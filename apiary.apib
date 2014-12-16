@@ -40,7 +40,7 @@ Retrieve all accounts in Bitsie Shop.
 
 # Group Users
 
-## Users Collection [/users{?firstName}{?lastName}{?email}{?role}{?status}]
+## Users Collection [/users{?firstName}{?lastName}{?email}{?role}{?status}{?sort}{?order}]
 ### List all Users [GET]
 Retrieve all users under your account.
 
@@ -54,6 +54,10 @@ This method is only available to `merchant` roles.
     * status (optional, string) ... Status of user record
         * active
         * suspended
+    * sort (optional, string) ... Column used to sort records
+    * order (optional, string) ... Sort order of records
+        * ASC
+        * DESC
 
 + Response 200 (application/json)
 
