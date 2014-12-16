@@ -3,19 +3,53 @@ FORMAT: 1A
 # Bitsie Shop
 Using the Bitsie Shop API, you can access all features available under your account via a RESTful API.
 
-# Group Authentication
+## Authentication
 
 Bitsie Shop uses HTTP Basic Authentication. Provide your API Key ID as the basic auth username and your API Key Secret as the basic auth password.
 
 `https://{API-KEY}:{API-SECRET}@api.shop.bitsie.com`
 
+## HTTPS/SSL
+
+All requests to Bitsie Shop must be made via https://
+
+## Errors
+
+If an expected error occurs, the Bitsie Shop API will respond with the appropriate non-200 status code. Error information will be included in the response.
+
+    {
+        "error" : { 
+            "message" : "Invoice amount is required." 
+        } 
+    }
+
+# Group Accounts
+
+## Accounts Collection [/accounts]
+### List all Accounts [GET]
+Retrieve all accounts in Bitsie Shop.
+
++ Response 200 (application/json)
+
+        {"meta":{"offset":0,"limit":20,"totalCount":8,"query":{}},"accounts":[{"id":1,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":2,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":3,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":4,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":5,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":6,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":7,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":8,"status":"suspended","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"}]}
+
 # Group Users
 
-## Users Collection [/users]
+## Users Collection [/users{?firstName}{?lastName}{?email}{?role}{?status}]
 ### List all Users [GET]
 Retrieve all users under your account.
 
 This method is only available to `merchant` roles.
+
++ Parameters
+    * firstName (optional, string) ... User's first name
+    * lastName (optional, string) ... User's last name
+    * email (optional, string) ... User's email address
+    * role (optional, string) ... Role of user
+    * status (optional, string) ... Status of user record
+        * active
+        * suspended
+
 + Response 200 (application/json)
 
         {"meta":{"offset":0,"limit":20,"totalCount":3,"query":{}},"users":[{"id":1,"firstName":"John","lastName":"Doe","email":"admin@bitsie.com","hashedPassword":"0cd93e00df4acbca670688ba205c8ecd0ed9138985e5f23789fd6c6c8fe84ea4","salt":"Salt","role":"administrator","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[{"id":1,"name":"bitpayApiKey","value":"1ApiKey","createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","userId":1}]},{"id":2,"firstName":"Jane","lastName":"Smith","email":"jane@bitsie.com","hashedPassword":"HashedPassword","salt":"Salt","role":"merchant","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[{"id":4,"name":"gratuity","value":"true","createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","userId":2}]},{"id":3,"firstName":"Jane","lastName":"Smith","email":"jane@bitsie.com","hashedPassword":"HashedPassword","salt":"Salt","role":"merchant","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[]}]}
