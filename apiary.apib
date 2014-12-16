@@ -30,21 +30,87 @@ Requests containing invalid data will respond with a 410 status code, and will c
 
 # Group Accounts
 
+
+## Account [/account/{id}]
+A single Account object. 
+
+The Account resource has the following attributes: 
+
+- id ... ID of the account
+
++ Parameters
+    + id (integer, `1`) ... The id of the Account.
+
++ Model (application/json)
+    
+    ```js
+    {
+        "createdAt" : "2014-12-01 00:00:00"
+    }
+    ```
+    
 ## Accounts Collection [/accounts]
+
++ Model (application/json)
+    
+    ```js
+    {
+        "meta" : {
+            "offset":0,
+            "limit":20,
+            "sort":[["createdAt","DESC"]],
+            "totalCount":2,
+            "query":{}
+        },
+        "accounts" : [
+            {
+                "id" : 1
+            },
+            {
+                "id" : 2
+            }
+        ]
+    }
+    ```
+    
 ### List all Accounts [GET]
 Retrieve all accounts in Bitsie Shop.
 
-+ Response 200 (application/json)
+This method is only available to `administrator` roles.
 
-        {"meta":{"offset":0,"limit":20,"totalCount":8,"query":{}},"accounts":[{"id":1,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":2,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":3,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":4,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":5,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":6,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":7,"status":"active","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"},{"id":8,"status":"suspended","createdAt":"2014-12-16T02:21:38.000Z","updatedAt":"2014-12-16T02:21:38.000Z"}]}
++ Response 200
+    
+    [Accounts Collection][]
 
 # Group Users
 
-## Users Collection [/users{?firstName}{?lastName}{?email}{?role}{?status}{?sort}{?order}]
-### List all Users [GET]
-Retrieve all users under your account.
+## User [/user/{id}]
+A single User object. 
 
-This method is only available to `merchant` roles.
+The User resource has the following attributes: 
+
+- id
+- ...
+
+
++ Parameters
+    + id (integer, `1`) ... The id of the User.
+
++ Model (application/json)
+    
+    ```js
+    {
+        "firstName" : "John",
+        "lastName" : "Doe"
+    }
+    ```
+
+### Retrieve a Single User [GET]
++ Response 200
+    
+    [User][]
+
+## User Collection [/users{?firstName}{?lastName}{?email}{?role}{?status}{?sort}{?order}]
 
 + Parameters
     * firstName (optional, string) ... User's first name
@@ -61,6 +127,19 @@ This method is only available to `merchant` roles.
             * &sort=lastName+DESC,firstName
             * &sort=lastName+DESC,firstName+ASC
 
-+ Response 200 (application/json)
++ Model (application/json)
+    
+    ```js
+    {
+        "firstName" : "John"
+    }
+    ```
+    
+### List all Users [GET]
+Retrieve all users under your account.
 
-        {"meta":{"offset":0,"limit":20,"totalCount":3,"query":{}},"users":[{"id":1,"firstName":"John","lastName":"Doe","email":"admin@bitsie.com","hashedPassword":"0cd93e00df4acbca670688ba205c8ecd0ed9138985e5f23789fd6c6c8fe84ea4","salt":"Salt","role":"administrator","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[{"id":1,"name":"bitpayApiKey","value":"1ApiKey","createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","userId":1}]},{"id":2,"firstName":"Jane","lastName":"Smith","email":"jane@bitsie.com","hashedPassword":"HashedPassword","salt":"Salt","role":"merchant","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[{"id":4,"name":"gratuity","value":"true","createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","userId":2}]},{"id":3,"firstName":"Jane","lastName":"Smith","email":"jane@bitsie.com","hashedPassword":"HashedPassword","salt":"Salt","role":"merchant","status":"active","resetPasswordToken":null,"createdAt":"0000-00-00 00:00:00","updatedAt":"0000-00-00 00:00:00","settings":[]}]}
+This method is only available to `merchant` roles.
+
++ Response 200
+    
+    [User Collection][]
